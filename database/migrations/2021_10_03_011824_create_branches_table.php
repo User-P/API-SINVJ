@@ -19,9 +19,9 @@ class CreateBranchesTable extends Migration
             $table->string('name_legal_re')->nullable();
             $table->string('email');
             $table->string('rfc');
-            $table->string('phone_number');
+            $table->string('telephone_number');
             $table->string('address');
-            $table->foreignId('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->foreignId('shop_id')->references('id')->on('shops')->cascadeOnDelete();
             $table->foreignId('municipality_id')->references('id')->on('municipalities');
             $table->softDeletes();
             $table->timestamps();

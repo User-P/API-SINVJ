@@ -23,10 +23,9 @@ class CreateProductsTable extends Migration
             $table->double('price_purchase');
             $table->double('discount');
             $table->integer('discar_cause')->nullable();
-            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreignId('line_id')->references('id')->on('lines')->onDelete('cascade');
-            $table->foreignId('shop_id')->references('id')->on('shops')->onDelete('cascade');
-            $table->foreignId('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            $table->foreignId('category_id')->references('id')->on('categories')->cascadeOnDelete();
+            $table->foreignId('line_id')->references('id')->on('lines')->cascadeOnDelete();
+            $table->foreignId('branch_id')->references('id')->on('branches')->cascadeOnDelete();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->date('restored_at')->nullable();
             $table->date('discarded_at')->nullable();

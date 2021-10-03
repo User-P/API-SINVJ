@@ -1,11 +1,10 @@
 <?php
 
-use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateSaleDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +13,12 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('sale_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 15);
-            $table->enum('type', [Category::PIECE, Category::WEIGHT]);
-            $table->foreignId('shop_id')->references('id')->on('shops')->cascadeOnDelete();
-            $table->softDeletes();
+            $table->foreignId('sale_id')->references('id')->on('sales')->cascadeOnDelete();
+            $table->foreignId('product_id')->references('id')->on('products');
+            $table->double('final_price');
+            $table->double('profit');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('sale_details');
     }
 }

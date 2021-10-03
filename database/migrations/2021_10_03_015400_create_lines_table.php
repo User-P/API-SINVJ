@@ -19,7 +19,7 @@ class CreateLinesTable extends Migration
             $table->string('purchase_price');
             $table->string('sale_price');
             $table->integer('discount');
-            $table->foreignId('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->foreignId('shop_id')->references('id')->on('shops')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

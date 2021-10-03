@@ -1,11 +1,10 @@
 <?php
 
-use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateExpensesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +13,13 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 15);
-            $table->enum('type', [Category::PIECE, Category::WEIGHT]);
-            $table->foreignId('shop_id')->references('id')->on('shops')->cascadeOnDelete();
+            $table->string('name', 191)->nullable();
+            $table->string('descripcion', 200)->nullable();
+            $table->integer('amount');
+            $table->foreignId('branch_id')->references('id')->on('branches');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +32,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('expenses');
     }
 }
