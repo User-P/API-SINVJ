@@ -23,6 +23,7 @@ class CreateBranchesTable extends Migration
             $table->string('address');
             $table->foreignId('shop_id')->references('id')->on('shops')->cascadeOnDelete();
             $table->foreignId('municipality_id')->references('id')->on('municipalities');
+            $table->double('commission');
             $table->softDeletes();
             $table->timestamps();
         });

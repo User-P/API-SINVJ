@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransferDetailsTable extends Migration
+class CreateInventoryStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateTransferDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transfer_details', function (Blueprint $table) {
-            $table->foreignId('transfer_id')->references('id')->on('transfers')->cascadeOnDelete();
-            $table->foreignId('product_id')->references('id')->on('products');
+        Schema::create('inventory_statuses', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateTransferDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transfer_details');
+        Schema::dropIfExists('inventory_statuses');
     }
 }
